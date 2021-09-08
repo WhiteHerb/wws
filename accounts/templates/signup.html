@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+
+{% block content%}
+
+<form method="post">
+  {% csrf_token %}
+  <h1>sign up</h1>
+  {% if error %}
+  <h1>{{error}}</h1>
+  {% endif %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">이메일</label>
+    {{ signupForm.email }}
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">이름</label>
+    {{ signupForm.username }}
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">학교이름</label>
+    {{ signupForm.schoolname }}
+    <br>
+  <small>뒤에 학교급도 붙여주세요 예시: 정보고등학교</small>
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">학년
+    </label>
+    {{ signupForm.grade }}
+    <br>
+    <small>예시: 2학년</small>
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">학번
+    </label>
+    {{ signupForm.stu_ID }}
+    <br>
+    <small>예시: 30517</small>
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputPassword1">비밀번호</label>
+    {{ signupForm.password1 }}
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputPassword1">비밀번호 재확인</label>
+    {{ signupForm.password2 }}
+  </div><br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

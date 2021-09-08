@@ -1,0 +1,49 @@
+{% extends 'rater/base.html'%}
+{% block content %}
+
+{% if request.session.type == 'upload' %}
+<form method="POST">
+  <h1>{{testname}}</h1>
+<script>
+for(i=1;i<={{count}};i++){
+  document.write('<div>');
+  document.write('"정답"');
+  document.write('<input type="number" name="examAnswer_'+i+'" value="'+i+'번째 문제 답" required>');
+  document.write('<br></br>');
+  document.write('"점수"');
+  document.write('<input type="number" name="examScore_'+i+'" value="'+i+'번째 문제 점수" required>');
+  document.write('</div>');
+  document.write('<br></br>');
+}
+</script>
+<input type="submit" value="제출" onclick="alert('완료!')">
+</form>
+
+{%else%}
+<div>
+  <form method="POST">
+    "시험 이름"
+    <input type="text" name="testname" required>
+    <small>예) 2학년 1학기 중간고사</small>
+    <br>
+    "문제 수"
+    <input type="number" name="count" required>
+    <small>예) 30</small>
+    <br>
+    "과목명"
+    <select name="subject">
+      <option value="수학">수학</option>
+      <option value="국어">국어</option>
+      <option value="영어">영어</option>
+      <option value="과학">과학</option>
+      <option value="사회">사회</option>
+      <option value="한국사">한국사</option>
+      <option value="정보">정보</option>
+      <option value="?">?</option>
+    </select>
+    <br>
+    <input type="submit" value="답지 입력" onclick="alert('완료!')">
+  </form>
+</div>
+{%endif%}
+{% endblock %}

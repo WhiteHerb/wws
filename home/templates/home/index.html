@@ -1,0 +1,66 @@
+{% load static %}
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/community.css' %}">
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+
+        
+    </head>
+  <body>
+    <div class="page-header">
+      <h1><a href="/home" class="title_">wws</a></h1>
+    </div>
+    <nav>
+      <ul class="nav-container">
+        <li class="nav-item"><a href="/home">메인</a></li>
+        <li class="nav-item"><a href="/community">잡담실</a></li>
+        <li class="nav-item"><a href="/rater">가채점</a></li>
+            
+        {% if user.is_authenticated %}
+        <li class="nav-item-right"><a href="/accounts/logout">{{ user.username }} (로그아웃)</a></li>
+        {% else %}
+        <li class="nav-item-right"><a href="/accounts/login">로그인</a></li>
+        <li class="nav-item-right"><a href="/accounts/signup">회원가입</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="content">
+      
+      <div class="community">
+        <h1>잡담실</h1>
+        <p>학생들이 사용하는 익명 커뮤니티입니다. 사용자들의 자유를 최대한 존중하지만 서로간의 예의를 지켜주세요</p>
+        <br>
+      </div>
+      <div class="rater">
+        <h1>가체점</h1>
+        <p>시험이 끝나고 객관식의 정답을 빠르게 맞춰 봅시다. 답지 등록 후 이용해 주세요</p>
+        <p>채점후 나의 등수를 빠르게 확인할 수 있습니다</p>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>
+
+{%load static%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>home</title>
+    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+  </head>
+  
+</html>

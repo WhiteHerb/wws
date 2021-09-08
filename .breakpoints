@@ -1,0 +1,36 @@
+{
+  "files": {
+    "community/admin.py": [
+      {
+        "id": "c9ea69a9-13c2-4fa0-968e-e801f3b00fcc",
+        "line": 6,
+        "version": 21,
+        "index": 122
+      }
+    ],
+    "community/templates/community/post_edit.html": [
+      {
+        "id": "7130cba6-9372-4b61-bfb8-7d4995f34dc3",
+        "line": 9,
+        "version": 21,
+        "index": 227
+      }
+    ],
+    "mysite/wsgi.py": [
+      {
+        "id": "718c3fa6-1c26-4ed8-9ec9-3d046cf2a92d",
+        "line": 9,
+        "version": 51,
+        "index": 247
+      }
+    ],
+    "rater/models.py": [
+      {
+        "id": "23cd30aa-4df6-4d92-b9c5-a943433e7725",
+        "line": 2,
+        "version": 2590,
+        "index": 34
+      }
+    ]
+  }
+}

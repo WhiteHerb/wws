@@ -1,0 +1,26 @@
+
+{% extends 'community/base.html' %}
+
+{% block content %}
+    
+
+<table>
+{% for object in object_list %}
+<div class="post">
+  <h1><a href="{% url 'post_detail' pk=object.pk %}">{{ object.title }}</a></h1>
+  <div class="date">
+      {{ object.published_date }}
+  </div>
+  <p>{{ object.text|truncatewords:30 }}</p>
+</div>
+{% endfor %}
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% for page in page_range %}
+    <li class="page-item"><a href="{% url 'post_list' %}?page={{page}}">{{page}}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endblock %}

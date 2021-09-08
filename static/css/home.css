@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'Jua';
+  src: url(./font/Jua-Regular.ttf)
+}
+.nav-container {
+  margin: 0;
+  padding: 7px;
+  list-style-type: none;
+  border: 2px solid rgb(162, 162, 255);
+  margin-left: -10px;
+  height: 40px;
+  width: 100%;
+  
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Jua', sans-serif;
+}
+
+
+.nav-item {
+  float: left;
+  border: 2px solid rgb(189, 236, 255);
+}
+
+.nav-item-right {
+  float: right;
+  border: 2px solid rgb(189, 236, 255);
+}
+
+.nav-item-sub {
+  float: unset;
+}
+
+.nav-container li a {
+  display: block;
+  padding: 8px 16px;
+  text-align: center;
+  border: 2px slateblue;
+}
+
+.nav-container-sub{
+  visibility: hidden;
+}
+
+.nav-container li:hover .nav-container-sub {
+  visibility: visible;
+}
+
+.title h1 {
+  font-weight: 50px;
+  color: white;
+}
+
+.title {
+  margin-top: -20px;
+  margin-left: -20px;
+  padding: 20px;
+  background-color: rgb(162, 162, 255);
+  width: 100%;
+  height: 110px;
+}
+
+.content {
+  margin: auto;
+  width: 50%;
+}
+
+a {
+  text-decoration-line: none;
+  text-decoration-color: none;
+}
+
+.sideh1 {
+  font-size: 10px;
+  float: right;
+}

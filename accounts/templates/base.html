@@ -1,0 +1,48 @@
+{% load static %}
+<html>
+    <head>
+        <title>account</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/community.css' %}">
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+
+        
+    </head>
+    
+<body>
+    <div class="page-header">
+      <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+      <h1><a href="/home" class="title_">account</a></h1>
+    </div>
+    <nav>
+      <ul class="nav-container">
+        <li class="nav-item"><a href="/home">메인</a></li>
+        <li class="nav-item"><a href="/community">잡담실</a></li>
+        <li class="nav-item"><a href="/rater">가체점</a></li>
+        
+        {% if user.is_authenticated %}
+        <li class="nav-item-right"><a href="/accounts/logout">{{ user.username }}   (로그아웃)</a></li>
+        {% else %}
+        <li class="nav-item-right"><a href="/accounts/login">로그인</a></li>
+        <li class="nav-item-right"><a href="/accounts/signup">회원가입</a></li>
+        {% endif %}
+          </ul>
+        </li>    
+      </ul>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {%block content%}
+            {%endblock%}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
