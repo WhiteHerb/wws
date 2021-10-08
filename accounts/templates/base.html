@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/community.css' %}">
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
-
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
         
     </head>
     
@@ -23,9 +23,12 @@
         
         {% if user.is_authenticated %}
         <li class="nav-item-right"><a href="/accounts/logout">{{ user.username }}   (로그아웃)</a></li>
+        <li class="nav-item-right"><a href="/accounts/school">학교관리</a></li>
         {% else %}
         <li class="nav-item-right"><a href="/accounts/login">로그인</a></li>
         <li class="nav-item-right"><a href="/accounts/signup">회원가입</a></li>
+        <li class="nav-item-right"><a href="/accounts/school">학교등록</a></li>
+        
         {% endif %}
           </ul>
         </li>    

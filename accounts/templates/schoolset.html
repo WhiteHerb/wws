@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{% block content%}
+{% if messages %}
+	{% for message in messages %}
+		{{ message.tags }}
+		{{ message.message }}
+	{% endfor %}
+{% endif %}
+<form method="post">
+  {% csrf_token %}
+  <h1>sign up</h1>
+  {% if error %}
+  <h1>{{error}}</h1>
+  {% endif %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">학교이름</label>
+    {{ form.schoolname }}
+    <br>
+  <small>뒤에 학교급도 붙여주세요 예시: 정보고등학교</small>
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">학년
+    </label>
+    {{ form.grade }}
+    <br>
+    <small>예시: 2학년</small>
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">학생수
+    </label>
+    {{ form.student_ }}
+    <br>
+    <small>예시: 164</small>
+  </div><br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">과목
+    </label>
+    {{ form.subjects }}
+    <br>
+    <small>예시: 수학/과학</small>
+  </div><br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

@@ -1,0 +1,14 @@
+{% extends 'rater/base.html' %}
+{% block content %}
+
+<h1> 과목당 수업 시수를 입력해 주세요 (나타나는 과목 순서대로 입력해 주세요) </h1>
+<h1>{{subs}}</h1>
+<form action="show" method="POST">
+  {% csrf_token %}
+  <input name="subint_list">
+  <br>
+  <small>예시 : 8/6/6/8/8</small>
+  <br>
+  <button type="submit">go</button>
+</form>
+{% endblock %}

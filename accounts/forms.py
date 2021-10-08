@@ -11,3 +11,10 @@ class SignupForm(UserCreationForm):
     model = Account
     fields = ('email','username','schoolname','grade','stu_ID','password1','password2')
     
+
+class schoolForm(forms.Form):
+  schoolname = forms.CharField(max_length=20, help_text='학교 이름 입력')
+  grade = forms.IntegerField()
+  student_ = forms.IntegerField()
+  subjects = forms.CharField(required=False)
+  

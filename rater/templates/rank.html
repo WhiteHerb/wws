@@ -4,8 +4,9 @@
 {% if request.session.type == loadrank %}
 
 <div>
-  <h1>{{request.user.username}}님은 {{userrank}}등 입니다.</h1>
+  <h1>{{request.user.username}}님은 {{usercount}}등 {{userrank}}등급 입니다.</h1>
   <form action="/home">
+  {% csrf_token %}
     <input type="submit" value="돌아가기">
   </form>
 </div>
@@ -14,18 +15,16 @@
 
 <div>
   <form method="POST">
+  {% csrf_token %}
     <h1>확인할 과목을 선텍하세요</h1>
     <select name="subject">
-      <option value="수학">수학</option>
-      <option value="국어">국어</option>
-      <option value="영어">영어</option>
-      <option value="과학">과학</option>
-      <option value="사회">사회</option>
-      <option value="한국사">한국사</option>
-      <option value="정보">정보</option>
-      <option value="?">?</option>
+      {% for i in sub_list %}
+      <option value="{{i}}">{{i}}</option>
+      {% endfor %}
     </select>
     <br>
+    <h1>과목의 수업시수를 입력하세요</h1>
+    <input name="subint" type="number">
   <input type="submit" value="확인">
   </form>
 </div>

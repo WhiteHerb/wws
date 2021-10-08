@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
+from django.contrib import messages
 
-from .forms import SignupForm
+from .forms import *
+from .models import *
 
 class accounts :
   def signup_main(request):
@@ -44,3 +46,24 @@ class accounts :
     logout(request)
     # def request.session['user']
     return redirect('home')
+
+  def set_school(request):
+    if request.POST :
+      form = schoolForm(request.POST)
+      print(form.errors)
+      messages.info(request, form.errors)
+      if form.is_valid():
+        print('set schoolform')
+        try:
+          sch_obj = Schoolgroup.objects.get(schoolnameset=form.data['schoolname'])
+        except :
+          sch_obj = Schoolgroup(schoolnameset=form.data['schoolname'])
+          sch_obj.save()
+        sch_obj = Schoolgroup.objects.get(schoolnameset=form.data['schoolname'])
+        gra_obj = Gradegroup(student_count = form.data["student_"],subjects = form.data['subjects'],gradeset = form.data['grade'],school = sch_obj)
+        gra_obj.save()
+        return redirect('home')
+    else:
+      form = schoolForm()
+    return render(request, 'schoolset.html',{'form':form})
+    

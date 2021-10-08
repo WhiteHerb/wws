@@ -2,6 +2,7 @@
 {% block content %}
 <div>
   <form method="POST">
+  {% csrf_token %}
     <button class="goto" name="goto" value="check">가체점</button>
     <br>
     <button class="goto" name="goto" value="rank">순위 확인</button>

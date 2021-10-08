@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'rater',
     'rankcal',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -88,9 +89,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default' : {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wws_test',
+        'USER': 'root',                          
+        'PASSWORD': 'fk05140201!',                  
+        'HOST': 'nel.o-r.kr',                     
+        'PORT': '3306',                          
     }
 }
 

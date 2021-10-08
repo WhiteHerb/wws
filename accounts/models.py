@@ -10,11 +10,13 @@ class Schoolgroup(models.Model):
 
 class Gradegroup(models.Model):
   student_count = models.IntegerField(default=0)
-  subjects = models.JSONField(default='{}')
-  gradeset = models.IntegerField(primary_key=True)
+  subjects = models.CharField(max_length=100,default='')
+  gradeset = models.IntegerField(default=0)
+  school = models.ForeignKey('Schoolgroup',on_delete=models.CASCADE,related_name='school',db_column="school_id",default='')
+
 
   def __str__(self):
-    return str(self.gradeset)
+    return str(self.gradeset)+str(self.school)
 
 class MyAccountManager(BaseUserManager):
   def create_user(self,email,username,schoolname,grade,stu_ID,password=None):
@@ -66,12 +68,8 @@ class Account(AbstractUser,PermissionsMixin) :
   schoolname = models.ForeignKey('Schoolgroup',on_delete=models.CASCADE,related_name='schoolname',db_column="schoolname_id")
   grade = models.ForeignKey('Gradegroup',on_delete=models.CASCADE,related_name='grade', db_column="grade_id")
   stu_ID = models.CharField(max_length=5, unique=True)
-  # math_rank = models.IntegerField(default=0)
-  # Eng_rank = models.IntegerField(default=0)
-  # kor_rank = models.IntegerField(default=0)
-  # sci_rank = models.IntegerField(default=0)
-  # soc_rank = models.IntegerField(default=0)
-  # his_rank = models.IntegerField(default=0)
+  sub_res = models.JSONField(default={})
+  userrank = models.IntegerField(default=0)
 
 
   date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)

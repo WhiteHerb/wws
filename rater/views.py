@@ -1,5 +1,9 @@
+import json
+
 from django.shortcuts import render,redirect
 from .models import Uploadanswer,checkClass,rankClass
+
+from accounts.models import *
 
 class rater :
   def main(request):
@@ -26,13 +30,16 @@ class rater :
         rankloader = rankClass()
         userrank = rankloader.rank(schoolname,grade,name,stu_ID,subject) #랭크 불러오기
         del request.session['type']
-        return render(request, 'rank.html', {'userrank' : userrank})
+        return render(request, 'rank.html', {'usercount' : userrank[0],'userrank' : userrank[1]})
     try:
       del request.session['type']
     except:
       print('no session: type')
     request.session['type'] = 'loadrank'
-    return render(request,'rank.html')
+    grade = request.user.grade
+    print(grade)
+    sub_list = list(grade.subjects.keys())
+    return render(request,'rank.html',{'sub_list':sub_list})
 
   def check(request):
     if request.method == 'POST':
@@ -69,14 +76,17 @@ class rater :
         print('no session: type')
       request.session['type']='inputinfo'
       print(request.session)
-      return render(request, 'check.html')
+      grade = request.user.grade
+      sub_list = list(grade.subjects.keys())
+      return render(request, 'check.html', {"sub_list":sub_list})
 
   def addanswer(request):
     if request.method == 'POST' :
       if request.session['type']=='inputinfos':
         post = request.POST
-        schoolname = request.user.schoolname #사용자 정보
+        schoolname = Schoolgroup(schoolnameset = request.user.schoolname) #사용자 정보
         grade = request.user.grade #사용자 정보
+        print(grade)
         name = request.user.username
         testname = post['testname']
         count = int(post['count'])
@@ -85,7 +95,7 @@ class rater :
           del request.session['examinfos']
         except:
           print('on session: examinfos')
-        request.session['examinfos'] = {'schoolname':schoolname,'grade':grade,'name':name,'testname':testname,'count':count,'subject':subject}
+        request.session['examinfos'] = {'schoolname':'schoolname','grade':'grade','name':name,'testname':testname,'count':count,'subject':subject}
         del request.session['type']
         request.session['type']='upload'
         return render(request,'addanswer.html', {
@@ -108,16 +118,25 @@ class rater :
             
         print(answer_list)
         examupload = Uploadanswer(
-          schoolname=examinfos['schoolname'],
-          grade=examinfos['grade'],
+          schoolname=request.user.schoolname,
+          grade=request.user.grade,
           subject=examinfos['subject'],
           testname=examinfos['testname'], 
           examinfos=answer_list, 
-          writer=examinfos['name'])
+          writer=examinfos['name'],
+          testrealname = str(request.user.schoolname)+str(request.user.grade)+str(examinfos['testname'])
+        )
         examupload.save()
         del request.session['type']
         del request.session['examinfos']
         return redirect('/home')
-    del request.session['type']
+    try:
+      del request.session['type']
+    except:
+      pass
+    school = request.user.schoolname
+    grade = request.user.grade
+    print(grade)
+    sub_list = list(grade.subjects.keys())
     request.session['type'] = 'inputinfos'
-    return render(request,'addanswer.html')
+    return render(request,'addanswer.html',{"sub_list":sub_list})
